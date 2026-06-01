@@ -1,7 +1,8 @@
 import { MaterialIcons } from '@expo/vector-icons'
 import * as Location from 'expo-location'
 import { useEffect, useRef, useState } from 'react'
-import { Dimensions, Keyboard, StatusBar, TouchableOpacity } from 'react-native'
+import { Dimensions, Keyboard, TouchableOpacity } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Autocomplete from 'react-native-autocomplete-input'
 import MapView, { Marker } from 'react-native-maps'
 import { useDebounce } from '../../hooks'
@@ -25,7 +26,7 @@ const GoogleMapView = ({
   initialCenter,
   isTracking = false
 }: GoogleMapViewProps) => {
-  // Map View reference
+  const { top } = useSafeAreaInsets()
   const mapViewRef = useRef<MapView>(null)
 
   // Search location states
@@ -205,7 +206,7 @@ const GoogleMapView = ({
     <View className='flex flex-1 items-center justify-center'>
       <View
         className={`absolute left-0 right-0 z-10 flex flex-1 px-3`}
-        style={{ top: (StatusBar.currentHeight || 10) * 2 }}
+        style={{ top: top }}
       >
         <Autocomplete
           inputContainerStyle={{ borderWidth: 0 }}
