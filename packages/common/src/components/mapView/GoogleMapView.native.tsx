@@ -27,6 +27,7 @@ const GoogleMapView = ({
   isTracking = false
 }: GoogleMapViewProps) => {
   const { top } = useSafeAreaInsets()
+  // Map View reference
   const mapViewRef = useRef<MapView>(null)
 
   // Search location states
